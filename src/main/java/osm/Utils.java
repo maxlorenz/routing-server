@@ -15,4 +15,18 @@ public class Utils {
 
         return Math.sqrt(x*x + y*y) * R;
     }
+
+    public static double getAccurateDistance(Node from, Node to) {
+        double phi1 = Math.toRadians(from.getLatitude());
+        double phi2 = Math.toRadians(to.getLatitude());
+        double dPhi = Math.toRadians(to.getLatitude() - from.getLatitude());
+        double dLambda = Math.toRadians(to.getLongitude() - from.getLongitude());
+
+        double a = Math.sin(dPhi/2.0) * Math.sin(dPhi/2.0) +
+                Math.cos(phi1) * Math.cos(phi2) +
+                Math.sin(dLambda/2.0) * Math.sin(dLambda/2.0);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c;
+    }
 }

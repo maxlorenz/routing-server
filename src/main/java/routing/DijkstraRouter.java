@@ -59,7 +59,7 @@ public class DijkstraRouter implements IRouter {
     }
 
     private DistanceNode toDistanceNode(Node node, DistanceNode parent) {
-        double distance = Utils.getApproximateDistance(node, parent.getNode());
+        double distance = Utils.getAccurateDistance(node, parent.getNode());
         double totalDistance = distance + parent.getDistance();
 
         return new DistanceNode(node, parent, totalDistance);
