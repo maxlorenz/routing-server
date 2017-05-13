@@ -34,6 +34,7 @@ public class RestApi {
 
         JsonTransformer toJson = new JsonTransformer();
 
+        // Example: http://localhost:4567/query/Universit%C3%A4t
         get("/query/:name", (request, response) -> {
             Collection<Node> query = db.queryNodes("name", request.params(":name"));
             Collection<JSONNode> res = new ArrayList<>();
@@ -44,6 +45,7 @@ public class RestApi {
             return res;
         }, toJson);
 
+        // Example: http://localhost:4567/from/593196498/to/319574535
         get("/from/:from/to/:to", (req, res) -> {
             long startId = Long.parseLong(req.params(":from"));
             long goalId = Long.parseLong(req.params(":to"));
