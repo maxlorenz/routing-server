@@ -32,14 +32,6 @@ public class RestApi {
 
         IRouter router = new DijkstraRouter(db);
 
-/*        try {
-            Node start = db.getNodeById(593196498L);
-            Node goal = db.getNodeById(319574535L);
-
-            Collection<Node> path = router.findShortestPath(start, goal);
-
-*/
-
         JsonTransformer toJson = new JsonTransformer();
 
         get("/query/:name", (request, response) -> {
@@ -50,6 +42,22 @@ public class RestApi {
                 res.add(new JSONNode(n));
 
             return res;
+        }, toJson);
+
+        get("/from/:from/to/:to", (req, res) -> {
+            long startId = Long.parseLong(req.params(":from"));
+            long goalId = Long.parseLong(req.params(":to"));
+
+            Node start = db.getNodeById(startId);
+            Node goal = db.getNodeById(goalId);
+
+            Collection<Node> path = router.findShortestPath(start, goal);
+            Collection<JSONNode> result = new ArrayList<>();
+
+            for (Node n : path)
+                result.add(new JSONNode(n));
+
+            return result;
         }, toJson);
     }
 
