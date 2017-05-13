@@ -9,7 +9,7 @@ import routing.IRouter;
 
 import java.util.Collection;
 
-public class OSMImporter {
+public class ExampleRouting {
     public static void main(String[] args) {
         IPersistence db = new InMemoryPersistence();
         IOSMSource src = new OverpassWebXML("http://www.overpass-api.de/api/xapi?*" +
