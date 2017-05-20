@@ -1,39 +1,29 @@
-import de.topobyte.osm4j.core.model.impl.Node;
-import de.topobyte.osm4j.core.model.util.OsmModelUtil;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import osm.IOSMSource;
-import osm.OverpassWebXML;
+import osm.PBFSource;
 import persistence.IPersistence;
 import persistence.InMemoryPersistence;
-import routing.DijkstraRouter;
-import routing.IRouter;
+import server.RestApi;
 
-import java.util.Collection;
+import static org.apache.log4j.helpers.UtilLoggingLevel.SEVERE;
 
 public class ExampleRouting {
     public static void main(String[] args) {
-        IPersistence db = new InMemoryPersistence();
-        IOSMSource src = new OverpassWebXML("http://www.overpass-api.de/api/xapi?*" +
-                "[bbox=10.7065,53.8368,10.7109,53.8412]");;
+        // Log to stdout
+        Logger logger = Logger.getLogger(String.valueOf(RestApi.class));
+        BasicConfigurator.configure();
 
         try {
+            IPersistence db = new InMemoryPersistence();
+            IOSMSource src = new PBFSource("res/monaco-latest.osm.pbf");
+
             src.persistTo(db);
+
+            RestApi api = new RestApi();
+            api.createServer(db);
         } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        IRouter router = new DijkstraRouter(db);
-
-        try {
-            Node start = db.getNodeById(593196498L);
-            Node goal = db.getNodeById(319574535L);
-
-            Collection<Node> path = router.findShortestPath(start, goal);
-
-            for (Node n : path) {
-                System.out.println(OsmModelUtil.getTagsAsMap(n).get("name"));
-            }
-
-        } catch (Exception ex) {
+            logger.log(SEVERE, "Could not start server because of an error: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

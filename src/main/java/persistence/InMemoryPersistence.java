@@ -76,10 +76,10 @@ public class InMemoryPersistence implements IPersistence {
         for (Node node : nodes.values()) {
             Map<String, String> tags = OsmModelUtil.getTagsAsMap(node);
 
-            if (tags.containsKey(key)) {
-                if (tags.get(key).contains(value)) {
-                    results.add(node);
-                }
+            if (getNeighbors(node).size() > 0
+                    && tags.containsKey(key)
+                    && tags.get(key).contains(value)) {
+                results.add(node);
             }
         }
 
