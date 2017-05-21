@@ -11,7 +11,7 @@ import static org.apache.log4j.helpers.UtilLoggingLevel.SEVERE;
 public class ExampleRouting {
     public static void main(String[] args) {
         // Log to stdout
-        Logger logger = Logger.getLogger(String.valueOf(RestApi.class));
+        Logger logger = Logger.getLogger(String.valueOf(ExampleRouting.class));
         BasicConfigurator.configure();
 
         try {

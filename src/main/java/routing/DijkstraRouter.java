@@ -8,7 +8,8 @@ import java.util.*;
 import java.util.function.Predicate;
 
 /**
- * Created by max on 13.05.17.*/
+ * Created by max on 13.05.17.
+ */
 public class DijkstraRouter implements IRouter {
     private IPersistence db;
 

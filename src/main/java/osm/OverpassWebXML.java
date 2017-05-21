@@ -27,8 +27,7 @@ public class OverpassWebXML implements IOSMSource {
         OsmIterator iterator = new OsmXmlIterator(input, false);
         AtomicInteger count = new AtomicInteger();
 
-        for (EntityContainer container : iterator)
-        {
+        for (EntityContainer container : iterator) {
             count.incrementAndGet();
 
             if (container.getType() == EntityType.Node) {

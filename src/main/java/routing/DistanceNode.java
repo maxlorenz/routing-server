@@ -39,8 +39,8 @@ public class DistanceNode implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        double d1 = ((DistanceNode)o).getDistance();
-        return (int)(distance - d1);
+        double d1 = ((DistanceNode) o).getDistance();
+        return (int) (distance - d1);
     }
 
     public DistanceNode getParent() {

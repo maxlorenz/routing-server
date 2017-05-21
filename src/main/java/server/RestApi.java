@@ -16,7 +16,7 @@ import static spark.Spark.get;
 public class RestApi {
     public void createServer(IPersistence db) {
         IRouter router = new DijkstraRouter(db);
-        JsonTransformer toJson = new JsonTransformer();
+        JSONTransformer toJson = new JSONTransformer();
 
         get("/query/:name", (request, response) -> {
             Collection<Node> query = db.queryNodes("name", request.params(":name"));

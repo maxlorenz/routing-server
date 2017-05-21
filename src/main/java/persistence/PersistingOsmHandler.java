@@ -8,7 +8,6 @@ import de.topobyte.osm4j.core.model.iface.OsmWay;
 import de.topobyte.osm4j.core.model.impl.Node;
 import de.topobyte.osm4j.core.model.impl.Relation;
 import de.topobyte.osm4j.core.model.impl.Way;
-import persistence.IPersistence;
 
 import java.io.IOException;
 
@@ -19,11 +18,12 @@ public class PersistingOsmHandler implements OsmHandler {
     private IPersistence persistence;
 
     public PersistingOsmHandler(IPersistence persistence) {
-       this.persistence = persistence;
+        this.persistence = persistence;
     }
 
     @Override
-    public void handle(OsmBounds bounds) throws IOException { }
+    public void handle(OsmBounds bounds) throws IOException {
+    }
 
     @Override
     public void handle(OsmNode node) throws IOException {
@@ -41,5 +41,6 @@ public class PersistingOsmHandler implements OsmHandler {
     }
 
     @Override
-    public void complete() throws IOException { }
+    public void complete() throws IOException {
+    }
 }

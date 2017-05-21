@@ -13,7 +13,7 @@ public class Utils {
         double x = x_ * Math.cos((from.getLatitude() + to.getLatitude()) / 2.0);
         double y = to.getLatitude() - from.getLatitude();
 
-        return Math.sqrt(x*x + y*y) * R;
+        return Math.sqrt(x * x + y * y) * R;
     }
 
     public static double getAccurateDistance(Node from, Node to) {
@@ -22,9 +22,9 @@ public class Utils {
         double dPhi = Math.toRadians(to.getLatitude() - from.getLatitude());
         double dLambda = Math.toRadians(to.getLongitude() - from.getLongitude());
 
-        double a = Math.sin(dPhi/2.0) * Math.sin(dPhi/2.0) +
+        double a = Math.sin(dPhi / 2.0) * Math.sin(dPhi / 2.0) +
                 Math.cos(phi1) * Math.cos(phi2) +
-                Math.sin(dLambda/2.0) * Math.sin(dLambda/2.0);
+                Math.sin(dLambda / 2.0) * Math.sin(dLambda / 2.0);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return R * c;

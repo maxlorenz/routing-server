@@ -2,7 +2,6 @@ package server;
 
 import de.topobyte.osm4j.core.model.impl.Node;
 import de.topobyte.osm4j.core.model.util.OsmModelUtil;
-import de.topobyte.osm4j.utils.OsmUtils;
 
 import java.util.Map;
 
